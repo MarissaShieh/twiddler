@@ -3,25 +3,37 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+<!--     <link rel="stylesheet" href="main.css"> -->
   </head>
   <body>
-    <script>
+      <script>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        $(document).ready(function(){
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+          var $body = $('body');
+          $body.html('');
 
-      });
+          var $button = $("<button >Latest Tweets</button>"); //Note to self: it's like like doc.createEle
+          $button.appendTo($body);
+          $button.css("background-color", "aquamarine");
 
-    </script>
+          var $tweetStack = $('<div></div>');
+
+          $button.click(function(){
+            $tweetStack.empty(); //clear out all the tweets and repaste
+
+            var index = streams.home.length - 1;
+            while(index >= 0){
+              var tweet = streams.home[index];
+              var $tweet = $('<div></div>');
+              $tweet.text('@' + tweet.user + ': ' + tweet.message);
+              $tweet.appendTo($tweetStack);
+              index -= 1;
+            };
+            $tweetStack.appendTo($body);
+          });
+
+        });
+      </script>
   </body>
 </html>
