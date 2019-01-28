@@ -20,19 +20,46 @@
           $button.appendTo($body);
 
           var $tweetStack = $('<div></div>');
+          var $usersTweets = $('<div></div>');
 
           $button.click(function(){
             $tweetStack.empty(); //clear out all the tweets and repaste
+            $usersTweets.empty();
 
             var index = streams.home.length - 1;
             while(index >= 0){
               var tweet = streams.home[index];
               if(index%2==1){
-                var $tweet = $('<div class="odd"></div>');
+                var $tweet = $('<section class="odd"></section>');
               } else if (index%2==0){
-                var $tweet = $('<div class="even"></div>');
+                var $tweet = $('<section class="even"></section>');
               }
-              $tweet.text('@' + tweet.user + ': ' + tweet.message + "/////////////" + tweet.created_at);
+              
+              var $userButton = $("<button class='user' id='"+ tweet.user + "'>@"+tweet.user+"</button>");
+              $userButton.appendTo($tweet);
+
+              $userButton.click(function(){
+                var $userName = $('<h1></h1>');
+                $userName.text("The past tweets of @" + this.id);
+                $userName.appendTo($usersTweets);
+                var index = streams.users[this.id].length-1;
+                while (index >=0){
+                  var $userInfo = $("<p></p>");
+                  $userInfo.text(streams.users[this.id][index].message);
+                  $userInfo.appendTo($usersTweets);
+                  index-=1;
+                }
+                $tweetStack.empty();
+                $usersTweets.appendTo($body);
+              });
+
+              var $message = $("<p></p>");
+              $message.text(tweet.message);
+              $message.appendTo($tweet);
+              var $time = $("<small></small>");
+              $time.text(tweet.created_at);
+              $time.appendTo($tweet);
+              //$tweet.text('@' + tweet.user + ': ' + tweet.message + "/////////////" + tweet.created_at);
               $tweet.appendTo($tweetStack);
               index -= 1;
             };
