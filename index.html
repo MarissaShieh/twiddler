@@ -45,7 +45,7 @@
                 var index = streams.users[this.id].length-1;
                 while (index >=0){
                   var $userInfo = $("<p></p>");
-                  $userInfo.text(streams.users[this.id][index].message);
+                  $userInfo.text(streams.users[this.id][index].message + " --------- " + tweet.created_at);
                   $userInfo.appendTo($usersTweets);
                   index-=1;
                 }
@@ -59,7 +59,7 @@
               var $time = $("<small></small>");
               $time.text(tweet.created_at);
               $time.appendTo($tweet);
-              //$tweet.text('@' + tweet.user + ': ' + tweet.message + "/////////////" + tweet.created_at);
+              //$tweet.text('@' + tweet.user + ': ' + tweet.message + "//////" + tweet.created_at);
               $tweet.appendTo($tweetStack);
               index -= 1;
             };
