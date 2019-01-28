@@ -1,9 +1,29 @@
-.grid {
+/*.grid{
 	display: grid;
 }
 
+.container {}
+	grid-template-areas:	"button tweets";
+}*/
+
+body {
+
+}
+
 button {
-	background-color: blue;
-	color: white;
-	font-size: 50px;
+	background-color: aquamarine;
+	font-size: 30px;
+/*	grid-area: button;*/
+
+}
+
+div {
+	
+}
+
+.even {
+	background-color: LightGreen;
+}
+
+.odd {
 }

@@ -3,7 +3,10 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-<!--     <link rel="stylesheet" href="main.css"> -->
+    <link rel="stylesheet" href="main.css">
+
+/*    <style>
+    </style>*/
   </head>
   <body>
       <script>
@@ -15,7 +18,6 @@
 
           var $button = $("<button >Latest Tweets</button>"); //Note to self: it's like like doc.createEle
           $button.appendTo($body);
-          $button.css("background-color", "aquamarine");
 
           var $tweetStack = $('<div></div>');
 
@@ -25,9 +27,12 @@
             var index = streams.home.length - 1;
             while(index >= 0){
               var tweet = streams.home[index];
-              var $tweet = $('<div></div>');
+              if(index%2==1){
+                var $tweet = $('<div class="odd"></div>');
+              } else if (index%2==0){
+                var $tweet = $('<div class="even"></div>');
+              }
               $tweet.text('@' + tweet.user + ': ' + tweet.message + "/////////////" + tweet.created_at);
-              new Date($.now());
               $tweet.appendTo($tweetStack);
               index -= 1;
             };
